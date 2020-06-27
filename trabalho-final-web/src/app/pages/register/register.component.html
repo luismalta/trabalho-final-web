@@ -1,1 +1,31 @@
-<p>register works!</p>
+
+    <form #registerForm="ngForm">
+        <div class="login-div">
+        <div class="login-input">
+            <label>Nome: </label>
+            <input type="text" class="form-control" name="name"  [(ngModel)]="user.name">
+        </div>   
+        <div class="login-input">
+            <label>Email: </label>
+            <input type="text" class="form-control" name="email"  [(ngModel)]="user.email">
+        </div>
+        <div class="login-input">
+            <label>Endereço: </label>
+            <input type="text" class="form-control" name="address"  [(ngModel)]="user.address">
+        </div>
+        <div class="login-input">
+            <label>Telefone: </label>
+            <input type="text" class="form-control" name="phone"  [(ngModel)]="user.phone">
+        </div>
+        <div class="login-input">
+            <label>Senha: </label>
+            <input type="text" class="form-control" name="password"  [(ngModel)]="user.password">
+        </div>
+        <div class="login-input">
+            <label>Senha: </label>
+            <input type="text" class="form-control" name="password2">
+        </div>
+        <button class="btn btn-primary" (click)="registerUser()">Cadastrar</button>
+    </div>
+    
+    </form>
