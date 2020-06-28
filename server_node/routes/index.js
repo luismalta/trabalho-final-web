@@ -54,4 +54,51 @@ router.post('/updateUser', function(req, res) {
   })
 });
 
+router.post('/createItem', function (req, res) {
+  console.log(req);
+  console.log('aaa');
+  var db = require("../db");
+
+  var Item = db.Mongoose.model('itemcollection', db.ItemSchema, 'itemcollection');
+  var item = new Item({ name: req.body.name, category: req.body.category, price: req.body.price });
+  item.save(function (err) {
+      if (err) {
+          console.log("Error! " + err.message);
+          return err;
+      }
+      else {
+          console.log("User saved");
+      }
+  });
+});
+
+router.get('/getMeat', function(req, res) {
+  console.log(req.body)
+  var db = require("../db");
+  var Item = db.Mongoose.model('itemcollection', db.ItemSchema, 'itemcollection');
+  Item.find({'category': 'Carne'}, function(err, result){
+    if (err) throw err;
+    console.log(result)
+    res.send(result)
+  })
+});
+
+router.post('/createDaily', function (req, res) {
+  console.log(req);
+  console.log('aaa');
+  var db = require("../db");
+
+  var Daily = db.Mongoose.model('dailycollection', db.DailySchema, 'dailycollection');
+  var daily = new Daily({ date: new Date(), meat: req.body.meat, rice: req.body.rice, plus: req.body.plus });
+  daily.save(function (err) {
+      if (err) {
+          console.log("Error! " + err.message);
+          return err;
+      }
+      else {
+          console.log("User saved");
+      }
+  });
+});
+
 module.exports = router;

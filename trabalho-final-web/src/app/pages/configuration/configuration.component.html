@@ -1,1 +1,79 @@
-<p>configuration works!</p>
+
+
+
+
+
+<form #configForm="ngForm">
+        <div class="newItem-div">
+        <div class="login-input">
+            <label>Nome: </label>
+            <input type="text" class="form-control" name="name"  [(ngModel)]="item.name">
+        </div>   
+        <div class="login-input">
+            <label>category: </label>
+            <input type="text" class="form-control" name="category"  [(ngModel)]="item.category">
+        </div>
+        <div class="login-input">
+            <label>price: </label>
+            <input type="text" class="form-control" name="price"  [(ngModel)]="item.price">
+        </div> -->
+
+        <button class="btn btn-primary" (click)="createItem()">Cadastrar</button>
+    </div>
+
+    <div class="newItem-div">
+        <div class="form-group">
+            <label>Escolha as opções de carne do dia: </label>
+            <select class="custom-select" name="opcaoCarne" [(ngModel)]="itens_meat">
+          <option *ngFor="let meat of itens_meat" [ngValue]="meat"> {{ meat.name }} </option>
+        </select>
+        </div>
+    </div>
+    <button class="btn btn-primary" (click)="addItem()">AdicionaItem</button>
+
+    <div class="newItem-div">
+        <div class="form-group">
+            <label>Escolha as opções de arroz do dia: </label>
+            <select class="custom-select" name="opcaoArroz" [(ngModel)]="itens_rice">
+          <option *ngFor="let rice of itens_rice" [ngValue]="rice"> {{ rice.name }} </option>
+        </select>
+        </div>
+    </div>
+    <button class="btn btn-primary" (click)="addRice()">AdicionaItem</button>
+
+    <div class="newItem-div">
+        <div class="form-group">
+            <label>Escolha as opções de acompanhamentos do dia: </label>
+            <select class="custom-select" name="opcaoAcompanhamento" [(ngModel)]="itens_plus">
+          <option *ngFor="let plus of itens_plus" [ngValue]="plus"> {{ plus.name }} </option>
+        </select>
+        </div>
+    </div>
+    <button class="btn btn-primary" (click)="addPlus()">AdicionaItem</button>
+
+    <button class="btn btn-primary" (click)="sendData()">Finalizar</button>
+
+<!-- 
+    <div class="newItem-div">
+        <div class="form-group">
+            <label>Escolha as opções de carne do dia: </label>
+            <select class="custom-select" name="opcaoProduto" [(ngModel)]="orderModel.product">
+          <option *ngFor="let product of products" [ngValue]="product"> {{ product.descricao }} </option>
+        </select>
+    </div>
+
+    <div class="newItem-div">
+        <div class="form-group">
+            <label>Escolha as opções de carne do dia: </label>
+            <select class="custom-select" name="opcaoProduto" [(ngModel)]="orderModel.product">
+          <option *ngFor="let product of products" [ngValue]="product"> {{ product.descricao }} </option>
+        </select>
+    </div> -->
+
+        <!-- <button class="btn btn-primary" (click)="editInfo()" [disabled]="edit">Cadastrar</button> -->
+    <!-- </div> -->
+    
+    </form>
+
+
+    <!-- {{ meatItens }} -->
