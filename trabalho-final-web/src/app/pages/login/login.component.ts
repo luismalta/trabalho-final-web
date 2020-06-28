@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/user';
+import { Router } from '@angular/router';
 // import { Injectable } from '@angular/core';
 // import { HttpClient } from '@angular/common/http';
 // import { Observable } from 'rxjs';
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   // }
 
-  constructor(){}
+  constructor(private router: Router){}
 
   ngOnInit(): void {
   }
@@ -42,7 +43,9 @@ export class LoginComponent implements OnInit {
     })
       .then((response) => response.json())
       .then((responseJson) => {
-        console.log(responseJson[0]);
+        this.router.navigate(['/profile'], {
+          queryParams: responseJson[0]
+       });
       })
       .catch((error) => {
         console.error(error);

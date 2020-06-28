@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/user';
+import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 // import { HttpClient } from '@angular/common/http';
 // import { map } from 'rxjs/operators';
@@ -13,7 +14,7 @@ export class RegisterComponent {
   private url = 'http://localhost:3000/createUser';
   user = {} as User;
   
-  constructor() {
+  constructor(private router: Router) {
 
   }
 
@@ -40,6 +41,7 @@ export class RegisterComponent {
       .then((response) => response.json())
       .then((responseJson) => {
         console.log(responseJson);
+        this.router.navigate(['/login']);
       })
       .catch((error) => {
         console.error(error);

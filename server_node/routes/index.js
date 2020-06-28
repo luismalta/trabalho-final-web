@@ -31,12 +31,23 @@ router.post('/createUser', function (req, res) {
   });
 });
 
-/* GET userlist page. */
 router.post('/login', function(req, res) {
   console.log(req.body)
   var db = require("../db");
   var Users = db.Mongoose.model('usercollection', db.UserSchema, 'usercollection');
   Users.find({'email': req.body.email, 'password': req.body.password}, function(err, result){
+    if (err) throw err;
+    console.log(result)
+    res.send(result)
+  })
+});
+
+
+router.post('/updateUser', function(req, res) {
+  console.log(req.body)
+  var db = require("../db");
+  var Users = db.Mongoose.model('usercollection', db.UserSchema, 'usercollection');
+  Users.update({'_id': req.body._id}, {$set: {'name': req.body.name, 'email': req.body.email, 'password': req.body.password, 'address':req.body.address, 'phone': req.body.phone}}, function(err, result){
     if (err) throw err;
     console.log(result)
     res.send(result)
