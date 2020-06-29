@@ -19,13 +19,18 @@ export class MealComponent implements OnInit {
 
 
   addCart(meal, mealQunty){
-        console.log(meal + " - " + mealQunty)
+    console.log(meal + " - " + mealQunty)
+
 
     var item = {
       item: meal,
       qunty: mealQunty,
 
     }
+
+    item.item.name = 'Refeição'
+    item.item.price = 10.0
+
     console.log(this.cart)
     this.cart.push(item)
     sessionStorage.setItem('cart', JSON.stringify(this.cart))

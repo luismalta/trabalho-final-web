@@ -39,7 +39,6 @@ export class DessertComponent implements OnInit {
   addCart(dessert, dessertQunty){
     console.log(dessert + " - " + dessertQunty)
     var dessertItem = ''
-    console.log(this.drinks)
     this.desserts.forEach(function (value){
       if (value._id == dessert){
         dessertItem = value
