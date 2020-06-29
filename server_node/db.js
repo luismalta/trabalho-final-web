@@ -11,4 +11,11 @@ var userSchema = new mongoose.Schema({
 }, { collection: 'usercollection' }
 );
 
-module.exports = { Mongoose: mongoose, UserSchema: userSchema }
+var itemSchema = new mongoose.Schema({
+    name: String,
+    categoty: String,
+    price: Number,
+}, { collection: 'item' }
+);
+
+module.exports = { Mongoose: mongoose, UserSchema: userSchema, ItemSchema: itemSchema }
