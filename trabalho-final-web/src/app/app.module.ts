@@ -14,6 +14,7 @@ import { ConfigurationComponent } from './pages/configuration/configuration.comp
 import { AppRoutingModule } from './app-routing.module';
 import { MainComponent } from './pages/main/main.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

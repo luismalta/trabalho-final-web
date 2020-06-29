@@ -14,5 +14,6 @@ export class AppComponent {
   ) { }
   ngOnInit() {
     // this.router.navigate(['/main']);
+    // localStorage.setItem('cart', JSON.stringify([]))
   }
 }
