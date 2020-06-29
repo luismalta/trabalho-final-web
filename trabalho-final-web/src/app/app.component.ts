@@ -13,6 +13,5 @@ export class AppComponent {
     private router: Router
   ) { }
   ngOnInit() {
-    this.router.navigate(['/main']);
   }
 }
