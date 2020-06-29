@@ -1,6 +1,7 @@
-
+<div class="container">
     <form #registerForm="ngForm">
-        <div class="login-div">
+        <div class="card">
+            <div class="card-body">
         <div class="login-input">
             <label>Nome: </label>
             <input type="text" class="form-control" name="name"  [(ngModel)]="user.name">
@@ -25,7 +26,11 @@
             <label>Senha: </label>
             <input type="text" class="form-control" name="password2">
         </div>
+        <div class="button">
         <button class="btn btn-primary" (click)="registerUser()">Cadastrar</button>
+    </div>
+    </div>
     </div>
     
     </form>
+</div>

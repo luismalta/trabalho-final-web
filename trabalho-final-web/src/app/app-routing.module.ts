@@ -12,7 +12,7 @@ import { ProfileComponent } from './pages/profile/profile.component'
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'main', component: MainComponent },
+  { path: '', component: MainComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent},
   { path: 'configuration', component: ConfigurationComponent},

@@ -1,26 +1,31 @@
 
 
 
-
+    <div class="container">
 
 <form #configForm="ngForm">
-        <div class="newItem-div">
+    <div class="card">
+        <div class="card-body">
         <div class="login-input">
             <label>Nome: </label>
             <input type="text" class="form-control" name="name"  [(ngModel)]="item.name">
         </div>   
         <div class="login-input">
-            <label>category: </label>
+            <label>Categoria: </label>
             <input type="text" class="form-control" name="category"  [(ngModel)]="item.category">
         </div>
         <div class="login-input">
-            <label>price: </label>
+            <label>Preço: </label>
             <input type="text" class="form-control" name="price"  [(ngModel)]="item.price">
-        </div> -->
-
+        </div> 
+        <div class="button">
         <button class="btn btn-primary" (click)="createItem()">Cadastrar</button>
+        </div>
     </div>
-
+</div>
+<div class="space"></div>
+<div class="card">
+    <div class="card-body">
     <div class="newItem-div">
         <div class="form-group">
             <label>Escolha as opções de carne do dia: </label>
@@ -29,8 +34,9 @@
         </select>
         </div>
     </div>
+    <div class="button">
     <button class="btn btn-primary" (click)="addItem()">AdicionaItem</button>
-
+    </div>
     <div class="newItem-div">
         <div class="form-group">
             <label>Escolha as opções de arroz do dia: </label>
@@ -39,8 +45,9 @@
         </select>
         </div>
     </div>
+    <div class="button">
     <button class="btn btn-primary" (click)="addRice()">AdicionaItem</button>
-
+</div>
     <div class="newItem-div">
         <div class="form-group">
             <label>Escolha as opções de acompanhamentos do dia: </label>
@@ -49,10 +56,39 @@
         </select>
         </div>
     </div>
+    <div class="button">
     <button class="btn btn-primary" (click)="addPlus()">AdicionaItem</button>
+    </div>
+    <div class="space"></div>
+    <div class="card">
+        <div class="card-body">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Categoria</th>
+                <th>Preço</th>
+            </tr>
+        </thead>
+        <tr *ngFor="let i of meatItens">
+            <td>{{ i.name }}</td>
+            <td>{{ i.category }}</td>
+            <td>{{ i.price }}</td>
+        </tr>
+        <tr *ngFor="let i of riceItens">
+            <td>{{ i.name }}</td>
+            <td>{{ i.category }}</td>
+            <td>{{ i.price }}</td>
+        </tr>
+    </table>
+</div>
+    </div>
 
+    <div class="button">
     <button class="btn btn-primary" (click)="sendData()">Finalizar</button>
-
+</div>    
+</div>
+    </div>
 <!-- 
     <div class="newItem-div">
         <div class="form-group">
@@ -77,3 +113,5 @@
 
 
     <!-- {{ meatItens }} -->
+
+</div>

@@ -1,6 +1,8 @@
 
+    <div class="container">
     <form #profileForm="ngForm">
-        <div class="login-div">
+        <div class="card">
+            <div class="card-body">
         <div class="login-input">
             <label>Nome: </label>
             <input type="text" class="form-control" name="name"  [(ngModel)]="user.name" [readonly]="read">
@@ -25,8 +27,12 @@
             <label>Senha: </label>
             <input type="text" class="form-control" name="password2" [readonly]="read">
         </div>
-        <button class="btn btn-primary" (click)="editInfo()" [disabled]="edit">Editar</button>
-        <button class="btn btn-primary" (click)="updateInfo()" [disabled]="read">Confirm</button>
+        <div class="button">
+        <button class="btn" (click)="editInfo()" [disabled]="edit">Editar</button>
+        <button class="btn" (click)="updateInfo()" [disabled]="read">Confirmar</button>
     </div>
-    
-    </form>
+    </div>
+</div>
+
+</form>
+</div>

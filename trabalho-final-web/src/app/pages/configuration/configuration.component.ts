@@ -11,7 +11,6 @@ export class ConfigurationComponent implements OnInit {
   item = {} as Item;
   itens_meat: Array<Item> = [];
   meatItens: Array<Item> = [];
-
   itens_rice: Array<Item> = [];
   riceItens: Array<Item> = [];
 

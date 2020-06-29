@@ -1,1 +1,19 @@
-<p>revenues works!</p>
+<table>
+    <thead>
+        <tr>
+            <th>Quantidade</th>
+            <th>Descrição</th>
+            <th>Total sem desconto</th>
+            <th>Total do desconto</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tr *ngFor="let i of sales">
+        <td>{{ i }}</td>
+        <td>{{ i }}</td>
+        <td>{{ i}}</td>
+        <td>{{ i }}</td>
+        <td>{{ i }}</td>
+    </tr>
+</table>
+<button class="btn btn-primary" (click)="calcTotal()">Fechar caixa</button>
