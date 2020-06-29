@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent},
   { path: 'configuration', component: ConfigurationComponent},
   { path: 'meal', component: MealComponent },
+  { path: 'drink', component: DrinkComponent },
 ];
 
 @NgModule({
