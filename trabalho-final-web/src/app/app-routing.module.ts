@@ -14,7 +14,6 @@ import { MealComponent } from './pages/meal/meal.component'
 const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'login', component: LoginComponent },
-  { path: '', component: MainComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent},
   { path: 'configuration', component: ConfigurationComponent},
