@@ -13,6 +13,7 @@ import { RevenuesComponent } from './pages/revenues/revenues.component';
 import { ConfigurationComponent } from './pages/configuration/configuration.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MainComponent } from './pages/main/main.component';
+import { AlertModule } from './_alert';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { MainComponent } from './pages/main/main.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    AlertModule
   ],
   providers: [],
   bootstrap: [AppComponent]

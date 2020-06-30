@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Meal } from './meal'
+import { AlertService } from '../../_alert';
 
 @Component({
   selector: 'app-meal',
@@ -7,8 +8,9 @@ import { Meal } from './meal'
   styleUrls: ['./meal.component.css']
 })
 export class MealComponent implements OnInit {
+  
 
-  constructor() { }
+  constructor(protected alertService: AlertService) { }
 
   mainItens = ['Arroz', 'Lentilha']
   meatItens = ['Bisteca', 'Frango', 'Carne de panela']
@@ -16,6 +18,10 @@ export class MealComponent implements OnInit {
   cart = []
   mealOption = new Meal('', '', '')
   mealQunty = 1
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+};
 
 
   addCart(meal, mealQunty){
@@ -31,10 +37,16 @@ export class MealComponent implements OnInit {
     item.item.name = 'Refeição'
     item.item.price = 10.0
 
-    console.log(this.cart)
-    this.cart.push(item)
-    sessionStorage.setItem('cart', JSON.stringify(this.cart))
-    console.log(this.cart)
+    if(meal == '' || mealQunty == '' || mealQunty == 0){
+      this.alertService.error('Selecione um item e uma quantidade válida!', this.options)
+    } else {
+      console.log(this.cart)
+      this.cart.push(item)
+      sessionStorage.setItem('cart', JSON.stringify(this.cart))
+      console.log(this.cart)
+      this.alertService.success('Item adicionado ao Carrinho!', this.options)
+    }
+
   }
 
   ngOnInit(): void {

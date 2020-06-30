@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/user';
+import { AlertService } from '../../_alert';
 
 @Component({
   selector: 'app-drink',
@@ -11,7 +12,12 @@ export class DrinkComponent implements OnInit {
   private url = 'http://localhost:3000/item/drink';
   user = {} as User;
 
-  constructor() { }
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+};
+
+  constructor(protected alertService: AlertService) { }
 
   cart = []
   drinkOption = ''
@@ -51,11 +57,17 @@ export class DrinkComponent implements OnInit {
       qunty: drinkQunty,
 
     }
-    console.log(this.cart)
-    this.cart.push(item)
-    sessionStorage.setItem('cart', JSON.stringify(this.cart))
-    console.log(this.cart)
 
+    if(drink == '' || drinkQunty == '' || drinkQunty == 0){
+      this.alertService.error('Selecione um item e uma quantidade válida!', this.options)
+    } else {
+
+      console.log(this.cart)
+      this.cart.push(item)
+      sessionStorage.setItem('cart', JSON.stringify(this.cart))
+      console.log(this.cart)
+      this.alertService.success('Item adicionado ao Carrinho!', this.options)
+    }
   }
 
   ngOnInit(): void {
