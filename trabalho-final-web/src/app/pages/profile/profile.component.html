@@ -1,1 +1,38 @@
-<p>profile works!</p>
+
+    <div class="container">
+    <form #profileForm="ngForm">
+        <div class="card">
+            <div class="card-body">
+        <div class="login-input">
+            <label>Nome: </label>
+            <input type="text" class="form-control" name="name"  [(ngModel)]="user.name" [readonly]="read">
+        </div>   
+        <div class="login-input">
+            <label>Email: </label>
+            <input type="text" class="form-control" name="email"  [(ngModel)]="user.email"  [readonly]="read">
+        </div>
+        <div class="login-input">
+            <label>Endereço: </label>
+            <input type="text" class="form-control" name="address"  [(ngModel)]="user.address"  [readonly]="read">
+        </div>
+        <div class="login-input">
+            <label>Telefone: </label>
+            <input type="text" class="form-control" name="phone"  [(ngModel)]="user.phone"  [readonly]="read">
+        </div>
+        <div class="login-input">
+            <label>Senha: </label>
+            <input type="text" class="form-control" name="password"  [(ngModel)]="user.password"  [readonly]="read">
+        </div>
+        <div class="login-input">
+            <label>Senha: </label>
+            <input type="text" class="form-control" name="password2" [readonly]="read">
+        </div>
+        <div class="button">
+        <button class="btn" (click)="editInfo()" [disabled]="edit">Editar</button>
+        <button class="btn" (click)="updateInfo()" [disabled]="read">Confirmar</button>
+    </div>
+    </div>
+</div>
+
+</form>
+</div>

@@ -1,1 +1,48 @@
-<p>meal works!</p>
+<div class="container">
+    <div class="card my-5" >
+        <div class="card-header">
+          <h5>Monte sua refeição</h5>
+        </div>
+        <div class="card-body">
+    
+            <form #orderForm="ngForm">        
+                <div class="form-group">
+                    <label><h5>Escolha a opção principal</h5></label>
+                    <div class="form-check" *ngFor="let item of mainItens">
+                        <input [(ngModel)]="mealOption.mainDish" class="form-check-input" type="radio" name="mainOption" value= {{item}}>
+                        <label class="form-check-label">{{ item }}</label>
+                    </div>
+                </div>
+
+                <hr/>
+
+                <div class="form-group">
+                    <label><h5>Escolha a opção de carne</h5></label>
+                    <div class="form-check" *ngFor="let item of meatItens">
+                        <input [(ngModel)]="mealOption.meat" class="form-check-input" type="radio" name="meatOption" value= {{item}}>
+                        <label class="form-check-label">{{ item }}</label>
+                    </div>
+                </div>
+
+                <hr/>
+
+                <div class="form-group">
+                    <label><h5>Escolha a opção de acompanhamento</h5></label>
+                    <div class="form-check" *ngFor="let item of sideDishItens">
+                        <input [(ngModel)]="mealOption.sideDish" class="form-check-input" type="radio" name="sideDishOption" value= {{item}}>
+                        <label class="form-check-label">{{ item }}</label>
+                    </div>
+                </div>
+                
+                <div class="form-group col-md-2">
+                    <label for="inlineFormInputName">Quantidade</label>
+                    <input type="text" class="form-control" name="meal_qunty" [(ngModel)]="mealQunty">
+                </div>
+
+                <button type="submit" class="btn btn-primary" (click)="addCart(mealOption, mealQunty)" title="always enabled">Adicionar ao carrinho</button>
+            </form>
+    
+        </div>
+    </div>
+    <alert></alert>
+</div>

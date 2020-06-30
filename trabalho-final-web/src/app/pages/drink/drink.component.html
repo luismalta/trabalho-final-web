@@ -1,1 +1,28 @@
-<p>drink works!</p>
+<div class="container">
+    <div class="card my-5" >
+        <div class="card-header">
+          <h5>Bebidas</h5>
+        </div>
+        <div class="card-body">            
+            <form #orderForm="ngForm">  
+                <div class="form-row">      
+                    <div class="form-group col-md-10">
+                        <label for="inlineFormInputName">Escolha sua opção de bebida</label>
+                        <select class="custom-select" [(ngModel)]="drinkOption" name="drink_option">
+                            <option value="">O que você gostaria de beber?</option>
+                            <option *ngFor="let drink of drinks" value={{drink._id}}> {{ drink.name }} </option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label for="inlineFormInputName">Quantidade</label>
+                        <input type="text" class="form-control" name="drink_qunty" [(ngModel)]="drinkQunty">
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" (click)="addCart(drinkOption, drinkQunty)" title="always enabled">Adicionar ao carrinho</button>
+            </form>
+        </div>
+    </div>
+    <alert></alert>
+</div>

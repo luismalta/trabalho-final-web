@@ -1,1 +1,19 @@
-<p>login works!</p>
+<form #loginForm="ngForm" class="form">
+    <div class="login-div">
+        <div class="login-input">
+            <label>Email: </label>
+            <input type="text" class="form-control" name="email"  [(ngModel)]="user.email">
+        </div>
+        <div class="login-input">
+            <label>Senha: </label>
+            <input type="text" class="form-control" name="password"  [(ngModel)]="user.password">
+        </div>
+        
+        <div class = "button">
+        <button class="btn btn-primary" (click)="loginAuth()">Entrar</button>
+    </div>
+    <div class="register">
+    <a class="nav-link" href="/register">Não possui cadastro? Clique aqui</a>
+</div>
+    </div>
+</form>

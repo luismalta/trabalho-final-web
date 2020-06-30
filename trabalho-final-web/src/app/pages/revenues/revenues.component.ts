@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RevenuesComponent implements OnInit {
 
+  sales = []
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  calcTotal(){
+
   }
 
 }

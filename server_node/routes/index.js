@@ -6,4 +6,99 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+/* POST to Add User Service */
+router.post('/createUser', function (req, res) {
+  console.log(req);
+  console.log('aaa');
+  var db = require("../db");
+  var name = req.body.name;
+  var email = req.body.email;
+  var password = req.body.password;
+  var admin = req.body.admin;
+  var address = req.body.address;
+  var phone = req.body.phone;
+
+  var Users = db.Mongoose.model('usercollection', db.UserSchema, 'usercollection');
+  var user = new Users({ name: name, email: email, password: password, admin: admin, address: address, phone: phone });
+  user.save(function (err) {
+      if (err) {
+          console.log("Error! " + err.message);
+          return err;
+      }
+      else {
+          console.log("User saved");
+      }
+  });
+});
+
+router.post('/login', function(req, res) {
+  console.log(req.body)
+  var db = require("../db");
+  var Users = db.Mongoose.model('usercollection', db.UserSchema, 'usercollection');
+  Users.find({'email': req.body.email, 'password': req.body.password}, function(err, result){
+    if (err) throw err;
+    console.log(result)
+    res.send(result)
+  })
+});
+
+
+router.post('/updateUser', function(req, res) {
+  console.log(req.body)
+  var db = require("../db");
+  var Users = db.Mongoose.model('usercollection', db.UserSchema, 'usercollection');
+  Users.update({'_id': req.body._id}, {$set: {'name': req.body.name, 'email': req.body.email, 'password': req.body.password, 'address':req.body.address, 'phone': req.body.phone}}, function(err, result){
+    if (err) throw err;
+    console.log(result)
+    res.send(result)
+  })
+});
+
+router.post('/createItem', function (req, res) {
+  console.log(req);
+  console.log('aaa');
+  var db = require("../db");
+
+  var Item = db.Mongoose.model('itemcollection', db.ItemSchema, 'itemcollection');
+  var item = new Item({ name: req.body.name, category: req.body.category, price: req.body.price });
+  item.save(function (err) {
+      if (err) {
+          console.log("Error! " + err.message);
+          return err;
+      }
+      else {
+          console.log("User saved");
+      }
+  });
+});
+
+router.get('/getMeat', function(req, res) {
+  console.log(req.body)
+  var db = require("../db");
+  var Item = db.Mongoose.model('itemcollection', db.ItemSchema, 'itemcollection');
+  Item.find({'category': 'Carne'}, function(err, result){
+    if (err) throw err;
+    console.log(result)
+    res.send(result)
+  })
+});
+
+router.post('/createDaily', function (req, res) {
+  console.log(req);
+  console.log('aaa');
+  var db = require("../db");
+
+  var Daily = db.Mongoose.model('dailycollection', db.DailySchema, 'dailycollection');
+  var daily = new Daily({ date: new Date(), meat: req.body.meat, rice: req.body.rice, plus: req.body.plus });
+  daily.save(function (err) {
+      if (err) {
+          console.log("Error! " + err.message);
+          return err;
+      }
+      else {
+          console.log("User saved");
+      }
+  });
+});
+
 module.exports = router;

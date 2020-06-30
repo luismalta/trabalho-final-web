@@ -1,0 +1,27 @@
+.form{
+    display: flex;
+    flex-direction: center;
+    justify-content: center;
+    align-content: center;
+}
+.login-div{
+    box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.2);
+    width: 40vw;
+    padding: 50px;
+    margin-top: 10vh;
+}
+
+.button{
+    display: flex;
+    flex-direction: center;
+    justify-content: center;
+    padding: 30px;
+}
+.login-input {
+    padding-top: 10px;
+}
+
+.register{
+    display: flex;
+    justify-content: flex-end;
+}
