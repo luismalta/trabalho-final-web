@@ -3,6 +3,7 @@ import { Sale } from 'src/app/sale'
 import { SaleLine } from 'src/app/sale-line'
 import { Item } from 'src/app/item';
 import { User } from 'src/app/user';
+import { AlertService } from '../../_alert';
 
 @Component({
   selector: 'app-cart',
@@ -11,12 +12,16 @@ import { User } from 'src/app/user';
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+  constructor(protected alertService: AlertService) { }
 
   cart = []
   totalPrice = 0.0
   user = {} as User;
   url = 'http://localhost:3000/sale'
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+  };
 
 
   calculateTotal(){
@@ -49,6 +54,7 @@ export class CartComponent implements OnInit {
         sessionStorage.removeItem('cart')
         this.cart = []
         this.totalPrice = 0.0
+        this.alertService.success('Pedido realizado!', this.options)
         
       })
       .catch((error) => {
