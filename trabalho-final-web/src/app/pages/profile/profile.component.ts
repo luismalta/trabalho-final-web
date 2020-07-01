@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/user';
 import { Router, ActivatedRoute } from '@angular/router';
+import {LoginComponent} from '../login/login.component';
+import { AlertService } from '../../_alert';
 
 @Component({
   selector: 'app-profile',
@@ -12,23 +14,44 @@ export class ProfileComponent {
   edit = false;
   user = {} as User;
   _id = '';
+  password2 = '';
   private url = 'http://localhost:3000/updateUser';
+  
+  userId = sessionStorage.getItem('userId')
 
-  constructor(private route: ActivatedRoute, private router: Router) { 
+ 
+  constructor(private route: ActivatedRoute, private router: Router, protected alertService: AlertService) { 
 
   }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      this.user.name = params.name;
-      this.user.email = params.email;
-      this.user.admin = params.admin;
-      this.user.address = params.address;
-      this.user.phone = params.phone;
-      this.user.password = params.password;
-      this._id = params._id;
-    });
-    console.log(this._id)
+    this.getInfo();
+  }
+
+  getInfo(){
+    fetch('http://localhost:3000/getUser',{
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: this.userId,
+      })
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.user.name = responseJson[0].name;
+        this.user.email = responseJson[0].email;
+        this.user.admin = responseJson[0].admin;
+        this.user.address = responseJson[0].address;
+        this.user.phone = responseJson[0].phone;
+        this.user.password = responseJson[0].password;
+        this._id = responseJson[0]._id;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   editInfo(){
@@ -37,7 +60,13 @@ export class ProfileComponent {
   }
 
   updateInfo() {
-    console.log(this.user);
+        if(!this.user.name || !this.user.address || !this.user.email || !this.user.phone || !this.user.password || this.user.password !== this.password2){
+      this.alertService.error('Preencha corretamente os campos', {
+        autoClose: true,
+        keepAfterRouteChange: false
+    });
+
+    } else {
     fetch(this.url,{
       method: 'POST',
       headers: {
@@ -65,6 +94,6 @@ export class ProfileComponent {
         console.error(error);
       });
   }
-
+  }
 
 }

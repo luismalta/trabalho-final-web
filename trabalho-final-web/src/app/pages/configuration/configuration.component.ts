@@ -9,6 +9,9 @@ import { Router } from '@angular/router';
 })
 export class ConfigurationComponent implements OnInit {
   item = {} as Item;
+  carneSelected = {} as Item;
+  principalSelected = {} as Item;
+  acompanhamentoSelected = {} as Item;
   itens_meat: Array<Item> = [];
   meatItens: Array<Item> = [];
   itens_rice: Array<Item> = [];
@@ -17,24 +20,55 @@ export class ConfigurationComponent implements OnInit {
   itens_plus: Array<Item> = [];
   plusItens: Array<Item> = [];
 
+  categoriesOpt: Array<String> = ["Carne", "Principal", "Acompanhamentos", "Bebidas", "Sobremesa"];
+
   private url = 'http://localhost:3000/getMeat';
+  private url4 = 'http://localhost:3000/getRice';
+  private url5 = 'http://localhost:3000/getPlus';
   private url2 = 'http://localhost:3000/createItem';
   private url3 = 'http://localhost:3000/createDaily';
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
-    this.getItens();
+    this.getMeat();
+    this.getRice();
+    this.getPlus();
   }
 
-  getItens(){
+  getMeat(){
     fetch(this.url)
       .then((response) => response.json())
       .then((responseJson) => {
         this.itens_meat = responseJson
-        console.log(this.itens_meat)
-      //   this.router.navigate(['/profile'], {
-      //     queryParams: responseJson[0]
-      //  });
+
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+  }
+
+  getRice(){
+
+      fetch(this.url4)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.itens_rice = responseJson
+
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+  }
+
+  getPlus(){
+
+      fetch(this.url5)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.itens_plus = responseJson
+
       })
       .catch((error) => {
         console.error(error);
@@ -42,6 +76,7 @@ export class ConfigurationComponent implements OnInit {
   }
 
   createItem() {
+    console.log(this.item.category)
     fetch(this.url2,{
       method: 'POST',
       headers: {
@@ -56,6 +91,17 @@ export class ConfigurationComponent implements OnInit {
     })
       .then((response) => response.json())
       .then((responseJson) => {
+        console.log(responseJson[0])
+        if(this.item.category === 'Principal'){
+          console.log(this.itens_rice)
+          this.itens_rice.push(this.item)
+        }
+        if(this.item.category == 'Carne'){
+          this.itens_meat.push(this.item)
+        }
+        if(this.item.category == 'Acompanhamentos'){
+          this.itens_plus.push(this.item)
+        }
         console.log(responseJson);
       })
       .catch((error) => {
@@ -64,21 +110,27 @@ export class ConfigurationComponent implements OnInit {
   }
 
   addItem() {
-    console.log(this.itens_meat["name"])
-    this.meatItens.push(new Item(this.itens_meat["name"], this.itens_meat["category"], this.itens_meat["price"]));
+    console.log(this.carneSelected)
+    this.meatItens.push(this.carneSelected);
     console.log(this.meatItens)
   }
 
   addRice() {
-    console.log(this.itens_rice["name"])
-    this.riceItens.push(new Item(this.itens_rice["name"], this.itens_rice["category"], this.itens_rice["price"]));
+    console.log(this.principalSelected)
+    this.riceItens.push(this.principalSelected);
     console.log(this.riceItens)
   }
 
   addPlus() {
-    console.log(this.itens_plus["name"])
-    this.plusItens.push(new Item(this.itens_plus["name"], this.itens_plus["category"], this.itens_plus["price"]));
+    console.log(this.acompanhamentoSelected)
+    this.plusItens.push(this.acompanhamentoSelected);
     console.log(this.plusItens)
+  }
+
+  cleanData(){
+    this.plusItens = [];
+    this.riceItens = [];
+    this.meatItens = [];
   }
 
   sendData(){
@@ -96,7 +148,9 @@ export class ConfigurationComponent implements OnInit {
     })
       .then((response) => response.json())
       .then((responseJson) => {
-        console.log(responseJson);
+        this.cleanData();
+        this.router.navigate(['/revenues'], {
+       });
       })
       .catch((error) => {
         console.error(error);

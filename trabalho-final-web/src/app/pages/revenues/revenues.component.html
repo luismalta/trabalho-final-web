@@ -1,4 +1,10 @@
-<table>
+
+<div *ngIf="admin">
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <button class="btn btn-primary" (click)="optDia()">Configurações</button>
+<table class="table">
     <thead>
         <tr>
             <th>Quantidade</th>
@@ -17,3 +23,8 @@
     </tr>
 </table>
 <button class="btn btn-primary" (click)="calcTotal()">Fechar caixa</button>
+</div>
+</div>
+</div>
+</div>
+<alert></alert>
