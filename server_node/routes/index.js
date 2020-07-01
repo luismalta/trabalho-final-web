@@ -112,6 +112,7 @@ router.post('/sale', function(req, res, next) {
       }
       else {
           console.log("Sale saved");
+          res.send({status: "Sale Saved"})
       }
   });
 });
