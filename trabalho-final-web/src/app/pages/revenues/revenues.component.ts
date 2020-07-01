@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/user';
 import { AlertService } from '../../_alert';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Sale } from 'src/app/sale';
 
 @Component({
   selector: 'app-revenues',
@@ -10,24 +11,66 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class RevenuesComponent implements OnInit {
 
-  sales = []
+  sales: Array<Sale> = []
   user = {} as User;
   _id = '';
   password2 = '';
   admin = false;
+  sale = {} as Sale;
+  id_recebido = '';
+
+
   constructor(protected alertService: AlertService, private router: Router) { }
 
   userId = sessionStorage.getItem('userId')
   ngOnInit(): void {
     this.getInfo();
+    this.getSales();
   }
 
   calcTotal(){
+    var total = 0; 
+    var total_perda = 0;
+    var total_ganho = 0;
+    this.sales.forEach(element => {
+      if(element.received === false){
+        total_perda += element.totalPrice;
+      }
+      total +=  element.totalPrice;
+    });
+    total_ganho = total - total_perda;
+    console.log(total_perda);
+    console.log(total);
+    console.log(total_ganho);
+  }
 
+  changeRecebido(){
+    this.sales.forEach(element => {
+      if(element._id === this.id_recebido){
+        element.received = false;
+      }
+    });
   }
 
   optDia(){
     this.router.navigate(['/configuration']);
+  }
+
+  getSales(){
+    fetch('http://localhost:3000/getSales',{
+      method: 'GET',
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson)
+        responseJson.forEach(element => {
+          this.sales.push(element);
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
   }
 
   getInfo(){

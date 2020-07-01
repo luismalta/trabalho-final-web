@@ -8,5 +8,6 @@ export class Sale {
         public totalPrice: number,
         public date: Date,
         public received: Boolean,
+        public _id: String,
      ){}
 }

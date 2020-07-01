@@ -1,25 +1,38 @@
 
+
+
 <div *ngIf="admin">
+
 <div class="container">
+    <div class="card">
+        <div class="card-body">
+        <div class="login-input">
+            <label>ID: </label>
+            <input type="text" class="form-control" name="name"  [(ngModel)]="id_recebido">
+        </div>   
+
+        <div class="button">
+        <button class="btn btn-primary" (click)="changeRecebido()">Cadastrar</button>
+        </div>
+    </div>
+</div>
     <div class="card">
         <div class="card-body">
             <button class="btn btn-primary" (click)="optDia()">Configurações</button>
 <table class="table">
     <thead>
         <tr>
-            <th>Quantidade</th>
-            <th>Descrição</th>
-            <th>Total sem desconto</th>
-            <th>Total do desconto</th>
+            <th>ID</th>
+            <th>Data</th>
             <th>Total</th>
+            <th>Recebido</th>
         </tr>
     </thead>
     <tr *ngFor="let i of sales">
-        <td>{{ i }}</td>
-        <td>{{ i }}</td>
-        <td>{{ i}}</td>
-        <td>{{ i }}</td>
-        <td>{{ i }}</td>
+        <id>{{i._id}}</id>
+        <td>{{ i.date }}</td>
+        <td>{{ i.totalPrice }}</td>
+        <td>{{ i.received}}</td>
     </tr>
 </table>
 <button class="btn btn-primary" (click)="calcTotal()">Fechar caixa</button>

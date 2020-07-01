@@ -138,7 +138,7 @@ router.post('/createDaily', function (req, res) {
 router.post('/sale', function(req, res, next) {
   var db = require("../db");
   var Sale = db.Mongoose.model('salecollection', db.SaleSchema);
-  var sale = new Sale({saleLines: req.body.saleLines, user: req.body.user, totalPrice: req.body.totalPrice, date: req.body.date, received: req.body.received})
+  var sale = new Sale({saleLines: req.body.saleLines, user: req.body.user, totalPrice: req.body.totalPrice, date: req.body.date, received: true})
   sale.save(function (err) {
       if (err) {
           console.log("Error! " + err.message);
@@ -151,4 +151,25 @@ router.post('/sale', function(req, res, next) {
   });
 });
 
+router.get('/getSales', function(req, res) {
+  console.log(req.body)
+  var db = require("../db");
+  var Sale = db.Mongoose.model('salecollection', db.SaleSchema, 'salecollection');
+  Sale.find({}, function(err, result){
+    if (err) throw err;
+    console.log(result)
+    res.send(result)
+  })
+});
+
+router.post('/updateSale', function(req, res) {
+  console.log(req.body)
+  var db = require("../db");
+  var Sale = db.Mongoose.model('salecollection', db.SaleSchema, 'salecollection');
+  Sale.update({'_id': req.body._id}, {$set: {'received': false}}, function(err, result){
+    if (err) throw err;
+    console.log(result)
+    res.send(result)
+  })
+});
 module.exports = router;
