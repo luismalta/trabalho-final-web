@@ -46,6 +46,9 @@ export class CartComponent implements OnInit {
       .then((response) => response.json())
       .then((responseJson) => {
         console.log(responseJson);
+        sessionStorage.removeItem('cart')
+        this.cart = []
+        this.totalPrice = 0.0
         
       })
       .catch((error) => {
