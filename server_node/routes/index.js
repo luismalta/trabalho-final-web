@@ -101,4 +101,19 @@ router.post('/createDaily', function (req, res) {
   });
 });
 
+router.post('/sale', function(req, res, next) {
+  var db = require("../db");
+  var Sale = db.Mongoose.model('salecollection', db.SaleSchema);
+  var sale = new Sale({saleLines: req.body.saleLines, user: req.body.user, totalPrice: req.body.totalPrice, date: req.body.date, received: req.body.received})
+  sale.save(function (err) {
+      if (err) {
+          console.log("Error! " + err.message);
+          return err;
+      }
+      else {
+          console.log("Sale saved");
+      }
+  });
+});
+
 module.exports = router;

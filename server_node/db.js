@@ -27,4 +27,13 @@ var dailySchema = new mongoose.Schema({
 }, { collection: 'dailycollection' }
 );
 
-module.exports = { Mongoose: mongoose, UserSchema: userSchema, ItemSchema: itemSchema, DailySchema: dailySchema }
+var saleSchema = new mongoose.Schema({
+    saleLines: Array,
+    user: String,
+    totalPrice: Number,
+    date: Date,
+    received: Boolean,
+}, { collection: 'salecollection' }
+);
+
+module.exports = { Mongoose: mongoose, UserSchema: userSchema, ItemSchema: itemSchema, DailySchema: dailySchema, SaleSchema: saleSchema }
