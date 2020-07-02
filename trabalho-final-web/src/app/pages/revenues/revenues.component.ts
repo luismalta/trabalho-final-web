@@ -18,8 +18,10 @@ export class RevenuesComponent implements OnInit {
   admin = false;
   sale = {} as Sale;
   id_recebido = '';
-
-
+  total = 0; 
+  total_perda = 0;
+  total_ganho = 0;
+  
   constructor(protected alertService: AlertService, private router: Router) { }
 
   userId = sessionStorage.getItem('userId')

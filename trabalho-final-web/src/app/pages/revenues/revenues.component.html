@@ -6,19 +6,22 @@
 <div class="container">
     <div class="card">
         <div class="card-body">
+            <p></p>
         <div class="login-input">
-            <label>ID: </label>
+            <label>Informe o id de um pedido não recebido: </label>
             <input type="text" class="form-control" name="name"  [(ngModel)]="id_recebido">
         </div>   
 
         <div class="button">
-        <button class="btn btn-primary" (click)="changeRecebido()">Cadastrar</button>
+        <button class="btn btn-primary" (click)="changeRecebido()">Não recebido</button>
         </div>
     </div>
 </div>
-    <div class="card">
+<div class="space"></div>
+<div class="card">
         <div class="card-body">
             <button class="btn btn-primary" (click)="optDia()">Configurações</button>
+            <div class="space"></div>
 <table class="table">
     <thead>
         <tr>
@@ -29,7 +32,7 @@
         </tr>
     </thead>
     <tr *ngFor="let i of sales">
-        <id>{{i._id}}</id>
+        <td>{{i._id}}</td>
         <td>{{ i.date }}</td>
         <td>{{ i.totalPrice }}</td>
         <td>{{ i.received}}</td>
@@ -37,6 +40,25 @@
 </table>
 <button class="btn btn-primary" (click)="calcTotal()">Fechar caixa</button>
 </div>
+<div class="space"></div>
+    <div class="card-body">
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Ganhos</th>
+            <th>Perdas</th>
+            <th>Total (Ganhos - Perdas)</th>
+        </tr>
+    </thead>
+    <tr>
+        <td>{{total_ganho}}</td>
+        <td>{{total_perda}}</td>
+        <td>{{total}}</td>
+    </tr>
+</table>
+</div>
+
 </div>
 </div>
 </div>
