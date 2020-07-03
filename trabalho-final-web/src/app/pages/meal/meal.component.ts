@@ -9,12 +9,13 @@ import { AlertService } from '../../_alert';
 })
 export class MealComponent implements OnInit {
   
+  private url = 'http://localhost:3000/daily';
 
   constructor(protected alertService: AlertService) { }
 
-  mainItens = ['Arroz', 'Lentilha']
-  meatItens = ['Bisteca', 'Frango', 'Carne de panela']
-  sideDishItens = ['Pure de batata', 'Salpicão']
+  mainItens = []
+  meatItens = []
+  sideDishItens = []
   cart = []
   mealOption = new Meal('', '', '')
   mealQunty = 1
@@ -22,6 +23,31 @@ export class MealComponent implements OnInit {
     autoClose: true,
     keepAfterRouteChange: false
 };
+
+isLoaded = false
+
+  getMeals(): Promise<any> {
+    fetch(this.url,{
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        this.mainItens = responseJson[0]['rice']
+        this.meatItens = responseJson[0]['meat']
+        this.sideDishItens = responseJson[0]['plus']
+        console.log(responseJson)
+        return responseJson
+      })
+      .catch((error) => {
+        console.error(error);
+        return error
+      });
+      return
+  }
 
 
   addCart(meal, mealQunty){
@@ -49,10 +75,12 @@ export class MealComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<any> {
     if (JSON.parse(sessionStorage.getItem('cart')) != null){
       this.cart = JSON.parse(sessionStorage.getItem('cart'))
     }
+    this.getMeals()
+    console.log(this.mainItens)
     console.log(this.cart)
   }
 

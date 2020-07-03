@@ -135,6 +135,17 @@ router.post('/createDaily', function (req, res) {
   });
 });
 
+router.get('/daily', function(req, res) {
+  console.log(req.body)
+  var db = require("../db");
+  var Daily = db.Mongoose.model('dailycollection', db.DailySchema, 'dailycollection');
+  Daily.find({}, function(err, result){
+    if (err) throw err;
+    console.log(result)
+    res.send(result)
+  })
+});
+
 router.post('/sale', function(req, res, next) {
   var db = require("../db");
   var Sale = db.Mongoose.model('salecollection', db.SaleSchema);
