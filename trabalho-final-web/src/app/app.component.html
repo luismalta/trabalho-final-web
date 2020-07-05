@@ -1,1 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Nome</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/profile">Perfil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/revenues">Administração</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+          <a  style='width: 25px;' href="cart">
+            <img style='max-width:100%; height:auto;' src="../assets/icons/supermarket.png">
+        </a>
+        <a *ngIf="isLogged == false" class="nav-link mx-5" href="/login">Login/Registre-se</a>
+        <button *ngIf="isLogged" type="button" class="btn btn-link" (click)="logout()">Logout</button>
+      </form>
+    </div>
+  </nav>
 <router-outlet></router-outlet>

@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Sale } from 'src/app/sale'
+import { SaleLine } from 'src/app/sale-line'
+import { Item } from 'src/app/item';
+import { User } from 'src/app/user';
+import { AlertService } from '../../_alert';
 
 @Component({
   selector: 'app-cart',
@@ -7,10 +12,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+  constructor(protected alertService: AlertService) { }
 
   cart = []
   totalPrice = 0.0
+  user = {} as User;
+  url = 'http://localhost:3000/sale'
+  options = {
+    autoClose: true,
+    keepAfterRouteChange: false
+  };
 
 
   calculateTotal(){
@@ -23,6 +34,50 @@ export class CartComponent implements OnInit {
 
   placeOrder(){
     console.log("Pedido realizado")
+    console.log(this.cart)
+    var sale = this.mountSaleLines()
+    sale['user'] = this.user.name
+    sale['date'] = new Date()
+    sale['received'] = false
+    
+    fetch(this.url,{
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(sale)
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log(responseJson);
+        sessionStorage.removeItem('cart')
+        this.cart = []
+        this.totalPrice = 0.0
+        this.alertService.success('Pedido realizado!', this.options)
+        
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  mountSaleLines(){
+    var linesArray = []
+    var totalPrice = 0.0
+    this.cart.forEach(function (line){
+      var name = line.item.name
+      var category = line.item.category
+      var price = line.item.price
+      var qunty = line. qunty
+      var item = new Item(name, category, price)
+      var saleLine = new SaleLine(item, qunty)
+      linesArray.push(saleLine)
+
+      totalPrice += (price * qunty)
+    })
+
+    return {saleLines: linesArray, totalPrice: totalPrice}
   }
 
   ngOnInit(): void {

@@ -12,6 +12,28 @@ export class AppComponent {
   constructor(
     private router: Router
   ) { }
+
+  isLogged = false
+
+  handleLogin(){
+    var userId = sessionStorage.getItem('userId')
+    console.log(this.isLogged)
+    if(userId && !this.isLogged){
+      this.isLogged = true
+    }
+  }
+
+  logout(){
+    sessionStorage.removeItem('userId')
+    this.router.navigate(['/main']);
+    window.location.reload()
+  }
+
+  login(){
+
+  }
+
   ngOnInit() {
+    this.handleLogin()
   }
 }

@@ -35,7 +35,7 @@ import { AlertModule } from './_alert';
     FormsModule,
     AlertModule
   ],
-  providers: [],
+  providers: [LoginComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

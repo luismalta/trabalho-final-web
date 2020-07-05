@@ -6,12 +6,13 @@ import { Router } from '@angular/router';
 // import { Observable } from 'rxjs';
 // import { map } from 'rxjs/operators';
 
-// @Injectable()
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
   public token: string;
   private url = 'http://localhost:3000/login';
@@ -26,6 +27,10 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router){}
 
   ngOnInit(): void {
+  }
+
+  public getToken(): string {
+    return this.token;
   }
 
   loginAuth() {
@@ -43,8 +48,10 @@ export class LoginComponent implements OnInit {
     })
       .then((response) => response.json())
       .then((responseJson) => {
-        this.router.navigate(['/profile'], {
-          queryParams: responseJson[0]
+        sessionStorage.setItem('userId', responseJson[0]._id);
+        window.location.reload()
+        this.router.navigate([''], {
+          state: {data: responseJson[0]}
        });
       })
       .catch((error) => {

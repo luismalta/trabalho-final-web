@@ -12,12 +12,11 @@
         </div>   
         <div class="login-input">
             <label>Categoria: </label>
-            <input type="text" class="form-control" name="category"  [(ngModel)]="item.category">
+            <select class="custom-select" name="opcaoCategoria" [(ngModel)]="item.category">
+                <option *ngFor="let cat of categoriesOpt" [ngValue]="cat"> {{ cat }} </option>
+              </select>
         </div>
-        <div class="login-input">
-            <label>Preço: </label>
-            <input type="text" class="form-control" name="price"  [(ngModel)]="item.price">
-        </div> 
+
         <div class="button">
         <button class="btn btn-primary" (click)="createItem()">Cadastrar</button>
         </div>
@@ -26,10 +25,32 @@
 <div class="space"></div>
 <div class="card">
     <div class="card-body">
+    <div class="login-input">
+        <label>Nome: </label>
+        <input type="text" class="form-control" name="name"  [(ngModel)]="item.name">
+    </div>   
+    <div class="login-input">
+        <label>Categoria: </label>
+        <select class="custom-select" name="opcaoCategoria" [(ngModel)]="item.category">
+            <option *ngFor="let cat of categoriesOpt" [ngValue]="cat"> {{ cat }} </option>
+          </select>
+    </div>
+    <div class="login-input">
+        <label>Preço: </label>
+        <input type="text" class="form-control" name="price"  [(ngModel)]="item.price">
+    </div> 
+    <div class="button">
+    <button class="btn btn-primary" (click)="createItem()">Cadastrar</button>
+    </div>
+</div>
+</div>
+<div class="space"></div>
+<div class="card">
+    <div class="card-body">
     <div class="newItem-div">
         <div class="form-group">
             <label>Escolha as opções de carne do dia: </label>
-            <select class="custom-select" name="opcaoCarne" [(ngModel)]="itens_meat">
+            <select class="custom-select" name="opcaoCarne" [(ngModel)]="carneSelected">
           <option *ngFor="let meat of itens_meat" [ngValue]="meat"> {{ meat.name }} </option>
         </select>
         </div>
@@ -40,7 +61,7 @@
     <div class="newItem-div">
         <div class="form-group">
             <label>Escolha as opções de arroz do dia: </label>
-            <select class="custom-select" name="opcaoArroz" [(ngModel)]="itens_rice">
+            <select class="custom-select" name="opcaoArroz" [(ngModel)]="principalSelected">
           <option *ngFor="let rice of itens_rice" [ngValue]="rice"> {{ rice.name }} </option>
         </select>
         </div>
@@ -51,7 +72,7 @@
     <div class="newItem-div">
         <div class="form-group">
             <label>Escolha as opções de acompanhamentos do dia: </label>
-            <select class="custom-select" name="opcaoAcompanhamento" [(ngModel)]="itens_plus">
+            <select class="custom-select" name="opcaoAcompanhamento" [(ngModel)]="acompanhamentoSelected">
           <option *ngFor="let plus of itens_plus" [ngValue]="plus"> {{ plus.name }} </option>
         </select>
         </div>
@@ -67,18 +88,19 @@
             <tr>
                 <th>Nome</th>
                 <th>Categoria</th>
-                <th>Preço</th>
             </tr>
         </thead>
         <tr *ngFor="let i of meatItens">
             <td>{{ i.name }}</td>
             <td>{{ i.category }}</td>
-            <td>{{ i.price }}</td>
         </tr>
         <tr *ngFor="let i of riceItens">
             <td>{{ i.name }}</td>
             <td>{{ i.category }}</td>
-            <td>{{ i.price }}</td>
+        </tr>
+        <tr *ngFor="let i of plusItens">
+            <td>{{ i.name }}</td>
+            <td>{{ i.category }}</td>
         </tr>
     </table>
 </div>
@@ -86,32 +108,15 @@
 
     <div class="button">
     <button class="btn btn-primary" (click)="sendData()">Finalizar</button>
+    <button class="btn btn-primary" (click)="cleanData()">Limpar</button>
 </div>    
 </div>
     </div>
-<!-- 
-    <div class="newItem-div">
-        <div class="form-group">
-            <label>Escolha as opções de carne do dia: </label>
-            <select class="custom-select" name="opcaoProduto" [(ngModel)]="orderModel.product">
-          <option *ngFor="let product of products" [ngValue]="product"> {{ product.descricao }} </option>
-        </select>
-    </div>
 
-    <div class="newItem-div">
-        <div class="form-group">
-            <label>Escolha as opções de carne do dia: </label>
-            <select class="custom-select" name="opcaoProduto" [(ngModel)]="orderModel.product">
-          <option *ngFor="let product of products" [ngValue]="product"> {{ product.descricao }} </option>
-        </select>
-    </div> -->
-
-        <!-- <button class="btn btn-primary" (click)="editInfo()" [disabled]="edit">Cadastrar</button> -->
-    <!-- </div> -->
     
     </form>
 
 
-    <!-- {{ meatItens }} -->
+
 
 </div>
