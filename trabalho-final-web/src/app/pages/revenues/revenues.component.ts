@@ -31,19 +31,14 @@ export class RevenuesComponent implements OnInit {
   }
 
   calcTotal(){
-    var total = 0; 
-    var total_perda = 0;
-    var total_ganho = 0;
     this.sales.forEach(element => {
       if(element.received === false){
-        total_perda += element.totalPrice;
+        this.total_perda += element.totalPrice;
       }
-      total +=  element.totalPrice;
+      this.total +=  element.totalPrice;
     });
-    total_ganho = total - total_perda;
-    console.log(total_perda);
-    console.log(total);
-    console.log(total_ganho);
+    this.total_ganho = this.total - this.total_perda;
+
   }
 
   changeRecebido(){

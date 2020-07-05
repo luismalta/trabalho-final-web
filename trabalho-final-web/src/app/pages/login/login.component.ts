@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
       .then((response) => response.json())
       .then((responseJson) => {
         sessionStorage.setItem('userId', responseJson[0]._id);
-        window.location.reload()
+        // window.location.reload()
         this.router.navigate([''], {
           state: {data: responseJson[0]}
        });

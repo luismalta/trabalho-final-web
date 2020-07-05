@@ -9,7 +9,7 @@ import { AlertService } from '../../_alert';
 })
 export class DrinkComponent implements OnInit {
   public token: string;
-  private url = 'http://localhost:3000/item/drink';
+  private url = 'http://localhost:3000/item/Bebidas';
   user = {} as User;
 
   options = {

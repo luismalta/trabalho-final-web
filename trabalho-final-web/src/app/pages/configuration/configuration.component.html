@@ -4,28 +4,13 @@
     <div class="container">
 
 <form #configForm="ngForm">
-    <div class="card">
-        <div class="card-body">
-        <div class="login-input">
-            <label>Nome: </label>
-            <input type="text" class="form-control" name="name"  [(ngModel)]="item.name">
-        </div>   
-        <div class="login-input">
-            <label>Categoria: </label>
-            <select class="custom-select" name="opcaoCategoria" [(ngModel)]="item.category">
-                <option *ngFor="let cat of categoriesOpt" [ngValue]="cat"> {{ cat }} </option>
-              </select>
-        </div>
+  
 
-        <div class="button">
-        <button class="btn btn-primary" (click)="createItem()">Cadastrar</button>
-        </div>
-    </div>
-</div>
-<div class="space"></div>
 <div class="card">
+
     <div class="card-body">
-    <div class="login-input">
+        <p>Cadastre opções de refeição, bebidas e sobremesas(opções de refeição podem ser cadastradas com preço 0,0):</p>
+        <div class="login-input">
         <label>Nome: </label>
         <input type="text" class="form-control" name="name"  [(ngModel)]="item.name">
     </div>   

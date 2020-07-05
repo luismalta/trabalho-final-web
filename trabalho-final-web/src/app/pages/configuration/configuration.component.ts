@@ -102,6 +102,7 @@ export class ConfigurationComponent implements OnInit {
         if(this.item.category == 'Acompanhamentos'){
           this.itens_plus.push(this.item)
         }
+        window.location.reload()
         console.log(responseJson);
       })
       .catch((error) => {
